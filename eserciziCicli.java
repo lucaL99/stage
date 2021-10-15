@@ -9,17 +9,22 @@ public class eserciziCicli {
          * altrimenti stampa "NO". Risolvere questo esercizio senza usare array.
          */
         System.out.println("* ESERCIZIO 1 *");
-        int num;
-        boolean c = true;
+        int num = 0;
+        boolean checkNumNegativo = true;
         System.out.println("Inserisci 0 per terminare la sequenza");
         do {
             System.out.println("Inserisci un numero:");
-            num = k.nextInt();
-            if (num < 0) {
-                c = false;
+            if (k.hasNextInt()) {
+                num = k.nextInt();
+                if (num < 0) {
+                    checkNumNegativo = false;
+                }
+            } else {
+                k.next();
+                System.out.println("Input non valido");
             }
         } while (num != 0);
-        if (c) {
+        if (checkNumNegativo) {
             System.out.println("Tutti positivi e pari");
         } else {
             System.out.println("NO");
@@ -34,20 +39,27 @@ public class eserciziCicli {
          * essere 9. Risolvere questo esercizio senza usare array.
          */
         System.out.println("* ESERCIZIO 2 *");
-        int num, n = 0, somma = 0;
+        int num = 0, n = 0, somma = 0;
         double media;
         System.out.println("Inserisci 0 per terminare la sequenza");
         do {
             System.out.println("Inserisci un numero:");
-            num = k.nextInt();
-            if ((num != 0) && ((num % 3) == 0)) {
-                somma = somma + num;
-                n++;
+            if (k.hasNextInt()) {
+                num = k.nextInt();
+                if ((num != 0) && ((num % 3) == 0)) {
+                    somma = somma + num;
+                    n++;
+                }
+            } else {
+                System.out.println("Input non valido");
+                k.next();
             }
         } while (num != 0);
         if (n != 0) {
             media = somma / n;
-            System.out.println(media);
+            System.out.println("Media: " + media);
+        } else {
+            System.out.println("Non hai inserito nessun numero divisibile per 3");
         }
 
     }
@@ -61,15 +73,29 @@ public class eserciziCicli {
          * essere ripetuto 5 volte. Risolvere questo esercizio senza usare array.
          */
         System.out.println("* ESERCIZIO 3 *");
-        String c;
-        int n;
+        String c = "";
+        int n = 0;
+        boolean hasNextInt;
         for (int i = 0; i < 5; i++) {
-            System.out.println("Numero di caratteri da inserire:");
-            n = k.nextInt();
+            do {
+                System.out.println("Numero di caratteri da inserire:");
+                hasNextInt = k.hasNextInt();
+                if (hasNextInt) {
+                    n = k.nextInt();
+                } else {
+                    k.next();
+                    System.out.println("Input non valido");
+                }
+            } while (!hasNextInt);
             for (int j = 0; j < n; j++) {
                 System.out.println("Inserisci un carattere:");
-                c = k.next();
-                System.out.println(c);
+                if (k.hasNext()) {
+                    c = k.next();
+                    System.out.println("Carattere inserito: " + c);
+                } else {
+                    k.next();
+                    System.out.println("Input non valido");
+                }
             }
         }
     }
