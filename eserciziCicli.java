@@ -10,21 +10,21 @@ public class eserciziCicli {
          */
         System.out.println("* ESERCIZIO 1 *");
         int num = 0;
-        boolean checkNumNegativo = true;
+        boolean checkNum = true;
         System.out.println("Inserisci 0 per terminare la sequenza");
         do {
             System.out.println("Inserisci un numero:");
             if (k.hasNextInt()) {
                 num = k.nextInt();
-                if (num < 0) {
-                    checkNumNegativo = false;
+                if ((num < 0) || (num % 2 != 0)) {
+                    checkNum = false;
                 }
             } else {
                 k.next();
                 System.out.println("Input non valido");
             }
         } while (num != 0);
-        if (checkNumNegativo) {
+        if (checkNum) {
             System.out.println("Tutti positivi e pari");
         } else {
             System.out.println("NO");
