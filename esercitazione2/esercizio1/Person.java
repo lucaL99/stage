@@ -51,6 +51,12 @@ public class Person {
     }
 
     public int bornYear() {
+        if (getTaxCode() == null) {
+            return 0;
+        }
+        if (getTaxCode().equals("")) {
+            return 0;
+        }
         String anno = getTaxCode().substring(6, 8);
         int annoInt = Integer.parseInt(anno);
         if (annoInt > 21) {
